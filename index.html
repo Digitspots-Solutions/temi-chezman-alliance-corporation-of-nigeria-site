@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temi Chezman Alliance Corporation of Nigeria - Excellence in Manufacturing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1818;
+            --color-accent: #d52c00;
+            --color-bg: #EEEBE5;
+            --color-text: #141414;
+            --color-surface: #262626;
+            --color-secondary-accent: #809da3;
+            --font-display: 'Exo 2', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+            --border-radius: 2px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(238, 235, 229, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            right: -100%;
+            width: 300px;
+            height: calc(100vh - 70px);
+            background: var(--color-bg);
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 999;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-menu ul a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        .mobile-menu ul a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Hero Section */
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 70px;
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--color-accent);
+            color: white;
+            padding: 1rem 3rem;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #b02400;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--color-accent);
+        }
+
+        /* About Section */
+        #about {
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.1s;
+            background: white;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Services Section */
+        #services {
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-accent);
+        }
+
+        .service-card:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .service-card p {
+            line-height: 1.7;
+        }
+
+        /* Why Choose Us Section */
+        #why-choose-us {
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.3s;
+            background: white;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            background: var(--color-surface);
+            color: white;
+            padding: 2rem;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .why-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .why-card p {
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.4s;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .contact-item {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .contact-item a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--color-primary);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-phone {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-email {
+            background: var(--color-secondary-accent);
+            color: white;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .contact-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-surface);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            section {
+                padding: 60px 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            section h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            section {
+                padding: 48px 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image {
+                height: 350px;
+            }
+
+            .services-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Temi Chezman</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-choose-us">Why Choose Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-choose-us">Why Choose Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <img src="https://images.pexels.com/photos/7178310/pexels-photo-7178310.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Manufacturing Facility" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Temi Chezman Alliance Corporation of Nigeria</h1>
+            <p class="tagline">Excellence in Manufacturing, Built on Nigerian Innovation</p>
+            <p>Welcome to Temi Chezman Alliance Corporation of Nigeria. We are a leading manufacturing company based in Kaduna, dedicated to delivering world-class products through innovative processes and unwavering commitment to quality. Our state-of-the-art facilities in Chikun Local Government serve businesses across Nigeria and beyond.</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="about-container">
+            <img src="https://images.pexels.com/photos/30564761/pexels-photo-30564761.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Manufacturing Complex" class="about-image">
+            <div class="about-text">
+                <p>Temi Chezman Alliance Corporation of Nigeria is strategically located at No 20A/20B Yusuf Illiyasu Road, Sabo G.R.A. Kaduna, in the heart of Chikun Local Government. We are a proudly Nigerian manufacturing enterprise committed to excellence, innovation, and sustainable industrial growth. Our operations combine international best practices with local expertise to deliver superior products that meet both national and international standards.</p>
+                <p>With a focus on quality control, operational efficiency, and customer satisfaction, we have established ourselves as a trusted partner for businesses seeking reliable manufacturing solutions. Our team of skilled professionals works tirelessly to ensure every product that leaves our facility reflects our commitment to excellence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Manufacturing Capabilities</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 2rem;">At Temi Chezman Alliance Corporation of Nigeria, we offer comprehensive manufacturing solutions tailored to meet diverse industry needs. Our services include:</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Custom Manufacturing</h3>
+                <p>We provide bespoke manufacturing services designed to your exact specifications, ensuring precision and quality in every product.</p>
+            </div>
+            <div class="service-card">
+                <h3>Quality Assurance</h3>
+                <p>Every product undergoes rigorous quality control processes to meet both Nigerian Industrial Standards (NIS) and international benchmarks.</p>
+            </div>
+            <div class="service-card">
+                <h3>Supply Chain Management</h3>
+                <p>From raw material sourcing to final product delivery, we manage the entire supply chain with efficiency and transparency.</p>
+            </div>
+            <div class="service-card">
+                <h3>Product Development</h3>
+                <p>Our experienced team collaborates with clients to develop innovative products that meet market demands and exceed expectations.</p>
+            </div>
+            <div class="service-card">
+                <h3>Bulk Production</h3>
+                <p>We have the capacity to handle large-scale production runs while maintaining consistent quality across all units.</p>
+            </div>
+        </div>
+        <p style="font-size: 1.05rem; margin-top: 2rem;">Our commitment to excellence ensures that your manufacturing needs are met with professionalism, precision, and reliability.</p>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us">
+        <h2>Why Choose Temi Chezman</h2>
+        <div class="why-grid">
+            <div class="why-card">
+                <h3>Strategic Location</h3>
+                <p>Situated in Kaduna's industrial hub, we offer excellent logistics access to markets across Northern and Central Nigeria.</p>
+            </div>
+            <div class="why-card">
+                <h3>Local Expertise</h3>
+                <p>We understand the Nigerian market dynamics and regulatory environment, ensuring seamless operations.</p>
+            </div>
+            <div class="why-card">
+                <h3>Quality Standards</h3>
+                <p>Our manufacturing processes adhere to strict quality control measures, guaranteeing products that meet or exceed industry standards.</p>
+            </div>
+            <div class="why-card">
+                <h3>Experienced Team</h3>
+                <p>Our workforce comprises skilled technicians, engineers, and quality control specialists dedicated to manufacturing excellence.</p>
+            </div>
+            <div class="why-card">
+                <h3>Reliable Partnerships</h3>
+                <p>We build long-term relationships with our clients, becoming trusted partners in their business growth.</p>
+            </div>
+            <div class="why-card">
+                <h3>Modern Infrastructure</h3>
+                <p>Our facilities at Sabo G.R.A. are equipped with contemporary machinery and technology to deliver efficient production.</p>
+            </div>
+            <div class="why-card">
+                <h3>Competitive Pricing</h3>
+                <p>We offer value-driven solutions without compromising on quality, helping your business maintain healthy margins.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+            <p>Ready to discuss your manufacturing needs? Temi Chezman Alliance Corporation of Nigeria is here to provide the solutions your business requires. Contact us today to learn how we can support your production goals with our expertise and state-of-the-art facilities.</p>
+            <p>Whether you need a detailed quote, want to schedule a facility tour, or have questions about our manufacturing capabilities, our team is ready to assist you. We serve clients across Kaduna State, Northern Nigeria, and throughout the country.</p>
+            <p>Reach out to us via phone or WhatsApp for immediate assistance, or visit our offices at Sabo G.R.A. for a comprehensive discussion of your requirements.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Phone:</strong> <a href="tel:+2349022603257">+234 902 260 3257</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Email:</strong> <a href="mailto:info@temichezman.com.ng">info@temichezman.com.ng</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Address:</strong> No 20A/20B Yusuf Illiyasu Road, Sabo G.R.A. Kaduna, Chikun Local Government, Kaduna State, Nigeria
+                </div>
+            </div>
+
+            <div class="contact-buttons">
+                <a href="tel:+2349022603257" class="contact-btn btn-phone">Call Us</a>
+                <a href="mailto:info@temichezman.com.ng" class="contact-btn btn-email">Email Us</a>
+                <a href="https://wa.me/2349022603257" class="contact-btn btn-whatsapp" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/2349022603257" class="whatsapp-float" target="_blank" aria-label="Contact us on WhatsApp">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.832.744 5.492 2.044 7.796L0 32l8.36-2.008A15.917 15.917 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm7.664 22.86c-.316.892-1.868 1.64-2.568 1.74-.688.096-1.336.312-4.496-.94-4.028-1.596-6.62-5.696-6.82-5.96-.196-.26-1.604-2.136-1.604-4.072s1.02-2.892 1.38-3.288c.36-.396.788-.496 1.052-.496.264 0 .528.004.756.012.244.012.572-.092.896.684.328.792 1.12 2.728 1.22 2.928.1.2.168.432.032.696-.132.268-.2.432-.396.664-.196.232-.412.52-.588.696-.196.2-.4.416-.172.816.228.396.1.02 2.12 3.492.54.74 1.116 1.38 1.772 1.888.264.2.416.168.568-.1.152-.268.652-.76.828-1.02.176-.26.352-.216.592-.132.24.084 1.528.72 1.792.852.264.132.44.196.504.308.064.108.064.624-.252 1.516z" fill="white"/>
+        </svg>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Temi Chezman Alliance Corporation of Nigeria. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
